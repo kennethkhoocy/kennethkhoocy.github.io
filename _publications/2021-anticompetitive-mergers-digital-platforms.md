@@ -7,6 +7,8 @@ excerpt: 'This paper analyzes anticompetitive mergers in two-sided digital platf
 date: 2021-01-01
 venue: 'Singapore Academy of Law Journal'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3712823'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3712823'
+downloads: 585
 citation: 'Kenneth Khoo. &quot;Anticompetitive Mergers in Two-Sided Digital Platform Markets: The Case of Uber-Grab.&quot; <i>Singapore Academy of Law Journal</i> 33, 202-240 (2021).'
 ---
 

@@ -7,6 +7,8 @@ excerpt: 'This paper examines the link between declining shareholder support for
 date: 2024-07-30
 venue: 'The Journal of Law and Economics (forthcoming)'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4913660'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4913660'
+downloads: 904
 citation: 'Kenneth Khoo and Roberto Tallarita. &quot;Expanding Shareholder Voice: The Impact of SEC Guidance on Environmental and Social Proposals.&quot; <i>Journal of Law and Economics</i> (forthcoming). European Corporate Governance Institute - Law Working Paper No. 822/2025.'
 ---
 
