@@ -1,7 +1,7 @@
 ---
 title: "The Price of Delaware Corporate Law Reform"
 collection: publications
-category: manuscripts
+category: working_papers
 permalink: /publication/2025-price-of-delaware
 excerpt: 'This paper uses event studies to measure the stock market response to Delaware&apos;s major 2025 corporate law reform.'
 date: 2025-06-24

@@ -1,7 +1,7 @@
 ---
 title: "Visual Saliency and Investment Decisions"
 collection: publications
-category: manuscripts
+category: working_papers
 permalink: /publication/2025-visual-saliency
 excerpt: 'Using eye-tracking technology, this paper investigates how visual saliency of fees shapes investment decisions.'
 date: 2025-02-08
