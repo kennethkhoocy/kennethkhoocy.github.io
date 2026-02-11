@@ -6,6 +6,9 @@ permalink: /publication/2020-facilitating-optimal-mechanism
 excerpt: 'This paper offers a comparative analysis of mechanisms facilitating optimal outcomes in mergers and acquisitions across Commonwealth and US jurisdictions.'
 date: 2020-06-01
 venue: 'Journal of Indian Law and Society'
+paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3548402'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3548402'
+downloads: 168
 citation: 'Kenneth Khoo and Hans Tjio. &quot;Facilitating the Optimal Mechanism in Mergers &amp; Acquisitions: A Comparative Perspective from the Commonwealth and United States.&quot; <i>Journal of Indian Law and Society</i> 11(2), 108-139 (2020).'
 ---
 

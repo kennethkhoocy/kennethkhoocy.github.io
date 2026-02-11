@@ -7,6 +7,8 @@ excerpt: 'This paper examines the relationship between common ownership, markups
 date: 2025-01-05
 venue: 'Working Paper'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4864154'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4864154'
+downloads: 165
 citation: 'Kenneth Khoo. &quot;Common Ownership, Markups and Corporate Governance.&quot; Working Paper.'
 ---
 
