@@ -7,6 +7,8 @@ excerpt: 'Using eye-tracking technology, this paper investigates how visual sali
 date: 2025-02-08
 venue: 'Under Review'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5149911'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5149911'
+downloads: 317
 citation: 'Kenneth Khoo, Luca Enriques, Alfredo Desiato, Yoon-Ho Alex Lee, and Alessandro Romano. &quot;Visual Saliency and Investment Decisions.&quot; Available at SSRN: https://ssrn.com/abstract=5149911'
 ---
 

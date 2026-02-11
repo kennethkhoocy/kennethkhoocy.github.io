@@ -7,6 +7,8 @@ excerpt: 'This paper analyzes the inefficiency of quasi-per se rules in regulati
 date: 2020-01-01
 venue: 'American Business Law Journal'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3498616'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3498616'
+downloads: 232
 citation: 'Kenneth Khoo and Jerrold Soh. &quot;The Inefficiency of Quasi-Per Se Rules: Regulating Information Exchange in EU and US Antitrust Law.&quot; <i>American Business Law Journal</i> 57(1), 45-111 (2020).'
 ---
 

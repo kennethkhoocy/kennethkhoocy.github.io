@@ -7,6 +7,8 @@ excerpt: 'This paper analyzes the law and economics of shareholder democracy.'
 date: 2025-02-01
 venue: 'European Business Organization Law Review (forthcoming)'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5138536'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5138536'
+downloads: 148
 citation: 'Kenneth Khoo. &quot;The Law and Economics of Shareholder Democracy.&quot; <i>European Business Organization Law Review</i> (forthcoming).'
 ---
 
