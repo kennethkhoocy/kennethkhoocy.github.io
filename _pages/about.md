@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Kenneth is an Assistant Professor at the NUS Faculty of Law. He graduated from NUS (2014) with an LL.B. (First Class Honours) and a B.Soc.Sci. (Economics) (First Class Honours); the London School of Economics (2018, M.Sc. Economics); and Yale Law School (2019, LL.M.; 2024, J.S.D.). In 2022 he was a research fellow at Harvard Law School's Program on Corporate Governance. His research and teaching lie at the intersection of Law and Economics, especially Corporate Law, Mergers and Acquisitions, Securities Regulation, and Competition Law. His awards include the Ministry of Trade and Industry (Economist Service) Prize for Best Thesis in Economics (NUS), the Best Academic Paper on ESG (Junior Category) at the ECGI–Berkeley Forum on Corporate Governance, and the Best Paper Award for Junior Scholars at the Asian Law and Economics Association Annual Conference. His work has been published (or is forthcoming) in journals including the Journal of Law and Economics, Journal of Empirical Legal Studies, International Review of Law and Economics, and European Business Organization Law Review.
+Kenneth is an Assistant Professor at the NUS Faculty of Law. He graduated from NUS (2014) with an LL.B. (First Class Honours) and a B.Soc.Sci. (Economics) (First Class Honours); the London School of Economics (2018, M.Sc. Economics); and Yale Law School (2019, LL.M.; 2024, J.S.D.). From 2022 to 2023 he was a Program Fellow at Harvard Law School's Program on Corporate Governance. His research and teaching lie at the intersection of Law and Economics, especially Corporate Law, Mergers and Acquisitions, Securities Regulation, and Competition Law. His awards include the Ministry of Trade and Industry (Economist Service) Prize for Best Thesis in Economics (NUS), the Best Academic Paper on ESG (Junior Category) at the ECGI–Berkeley Forum on Corporate Governance, and the Best Paper Award for Junior Scholars at the Asian Law and Economics Association Annual Conference. His work has been published (or is forthcoming) in journals including the Journal of Law and Economics, Journal of Empirical Legal Studies, International Review of Law and Economics, and European Business Organization Law Review.
 
 ## Featured Research
 
@@ -17,7 +17,9 @@ Kenneth is an Assistant Professor at the NUS Faculty of Law. He graduated from N
 
 After a dramatic increase over the past decade, shareholder support for environmental and social (E&S) proposals seems to have waned. In this Article, we examine whether this recent decline is linked to a 2021 shift in the SEC's policy, which expanded the ability of shareholders to influence E&S corporate decisions. We suggest that this regulatory shift has led to an increase in "prescriptive" E&S proposals, which typically call for more aggressive but costlier E&S policies by companies. Using a combination of supervised and unsupervised machine learning techniques to identify prescriptive proposals, we find that these proposals generally receive less shareholder support and seem to be driving a substantial part of the decline in support for E&S proposals.
 
-**Award:** Best Academic Paper on ESG (Junior Category) at the ECGI–Berkeley Forum on Corporate Governance
+**Awards:**
+- Best Academic Paper (Junior Category) at the 2024 Berkeley-ECGI Forum on Corporate Governance
+- Best Paper Award for Junior Scholars at the Asian Law and Economics Association 2025 Annual Conference
 
 [Download paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4913660)
 

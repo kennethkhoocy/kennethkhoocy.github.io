@@ -1,0 +1,18 @@
+---
+title: "The Law and Economics of Shareholder Democracy"
+collection: publications
+category: manuscripts
+permalink: /publication/2025-shareholder-democracy
+excerpt: 'This paper analyzes the law and economics of shareholder democracy.'
+date: 2025-02-01
+venue: 'European Business Organization Law Review (forthcoming)'
+citation: 'Kenneth Khoo. &quot;The Law and Economics of Shareholder Democracy.&quot; <i>European Business Organization Law Review</i> (forthcoming).'
+---
+
+## Abstract
+
+This paper analyzes the law and economics of shareholder democracy.
+
+## Publication Details
+
+**Journal:** *European Business Organization Law Review* (forthcoming)

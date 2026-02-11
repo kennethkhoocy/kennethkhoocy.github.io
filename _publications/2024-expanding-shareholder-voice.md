@@ -5,7 +5,7 @@ category: manuscripts
 permalink: /publication/2024-expanding-shareholder-voice
 excerpt: 'This paper examines the link between declining shareholder support for E&S proposals and the 2021 shift in SEC policy.'
 date: 2024-07-30
-venue: 'Journal of Law and Economics (forthcoming)'
+venue: 'The Journal of Law and Economics (forthcoming)'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4913660'
 citation: 'Kenneth Khoo and Roberto Tallarita. &quot;Expanding Shareholder Voice: The Impact of SEC Guidance on Environmental and Social Proposals.&quot; <i>Journal of Law and Economics</i> (forthcoming). European Corporate Governance Institute - Law Working Paper No. 822/2025.'
 ---
@@ -20,6 +20,8 @@ After a dramatic increase over the past decade, shareholder support for environm
 
 **SSRN Downloads:** Over 1,000
 
-**Award:** Best Academic Paper on ESG (Junior Category) at the ECGI–Berkeley Forum on Corporate Governance
+**Awards:**
+- Best Academic Paper (Junior Category) at the 2024 Berkeley-ECGI Forum on Corporate Governance
+- Best Paper Award for Junior Scholars at the Asian Law and Economics Association 2025 Annual Conference
 
 [Download paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4913660)
