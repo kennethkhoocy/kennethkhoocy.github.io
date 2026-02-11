@@ -7,6 +7,8 @@ excerpt: 'This paper uses event studies to measure the stock market response to 
 date: 2025-06-24
 venue: 'Under Review'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5318203'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5318203'
+downloads: 832
 citation: 'Kenneth Khoo and Roberto Tallarita. &quot;The Price of Delaware Corporate Law Reform.&quot; Available at SSRN: https://ssrn.com/abstract=5318203'
 ---
 

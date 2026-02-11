@@ -7,6 +7,8 @@ excerpt: 'This paper examines the transaction costs associated with common owner
 date: 2023-01-01
 venue: 'University of Pennsylvania Journal of Business Law'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4067883'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4067883'
+downloads: 323
 citation: 'Kenneth Khoo. &quot;Transaction Costs in Common Ownership.&quot; <i>University of Pennsylvania Journal of Business Law</i> 25(1), 209-294 (2023).'
 ---
 

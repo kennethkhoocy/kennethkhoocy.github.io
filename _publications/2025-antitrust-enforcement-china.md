@@ -7,6 +7,8 @@ excerpt: 'This paper examines the impact of antitrust enforcement on China&apos;
 date: 2025-01-01
 venue: 'International Review of Law &amp; Economics'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4850728'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4850728'
+downloads: 385
 citation: 'Kenneth Khoo, Sinchit Lai, and Tian Chuyue. &quot;The Impact of Antitrust Enforcement on China&apos;s Digital Platforms: Evidence from SAMR v. Alibaba.&quot; <i>International Review of Law &amp; Economics</i> 83, 106268 (2025).'
 ---
 

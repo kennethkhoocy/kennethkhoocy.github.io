@@ -6,6 +6,9 @@ permalink: /publication/2023-gender-gaps-legal-education
 excerpt: 'This paper investigates the impact of class participation assessments on gender gaps in legal education.'
 date: 2023-06-01
 venue: 'Journal of Empirical Legal Studies'
+paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4227446'
+link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4227446'
+downloads: 439
 citation: 'Kenneth Khoo and Jaclyn Neo. &quot;Gender Gaps in Legal Education: The Impact of Class Participation Assessments.&quot; <i>Journal of Empirical Legal Studies</i> 20(4), 1070-1137 (2023).'
 ---
 
