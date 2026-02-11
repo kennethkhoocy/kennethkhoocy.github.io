@@ -5,7 +5,7 @@ category: working_papers
 permalink: /publication/2025-visual-saliency
 excerpt: 'Using eye-tracking technology, this paper investigates how visual saliency of fees shapes investment decisions.'
 date: 2025-02-08
-venue: 'Under Review'
+venue: 'Working Paper'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5149911'
 link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5149911'
 downloads: 317
