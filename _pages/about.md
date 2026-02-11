@@ -35,7 +35,7 @@ In 2025, Delaware legislators proposed and approved a major overhaul of the stat
 ---
 
 ### [Visual Saliency and Investment Decisions](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5149911)
-**With Luca Enriques, Alfredo Desiato, Yoon-Ho Alex Lee, and Alessandro Romano** | *Under Review*
+**With Luca Enriques, Alfredo Desiato, Yoon-Ho Alex Lee, and Alessandro Romano** | *Working Paper*
 
 Despite regulatory efforts to improve fee transparency, investors persistently underweight fees and overweight past performance. This study employs webcam-based eye-tracking technology in a large-scale online experiment to investigate how manipulating the visual saliency of fees shapes investment decisions. The findings show that increasing fee saliency reduces time-to-first-fixation on past performance graphs by 47-75% and significantly increases dwell time on fees by 3-5.8%. These shifts in visual attention are associated with an 11.2% greater allocation to lower-fee funds in treatment groups compared to the control, with effects magnified for fund pairs exhibiting larger fee differentials.
 
