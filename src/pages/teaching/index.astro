@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
+
+const courses = await getCollection('teaching');
+const sorted = courses.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout title="Teaching">
+  <h1 class="text-3xl font-semibold tracking-tight" style="color: var(--color-text);">Teaching</h1>
+  <SectionDivider label="Current and recent courses" />
+  <ul class="space-y-6">
+    {sorted.map((c) => (
+      <li>
+        <a href={`/teaching/${c.id}/`} class="text-lg font-medium block">{c.data.title}</a>
+        {c.data.code && <div class="text-sm" style="color: var(--color-text-muted);">{c.data.code}</div>}
+        <p class="mt-1">{c.data.description}</p>
+        {c.data.materials_url && (
+          <p class="mt-1 text-sm"><a href={c.data.materials_url}>Course materials (GitHub) →</a></p>
+        )}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
