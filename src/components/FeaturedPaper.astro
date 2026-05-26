@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  year: number;
+  coauthors: string[];
+  venue: string;
+  awards?: string[];
+  summary?: string;
+  ssrn_url?: string;
+  pdf_url?: string;
+}
+
+const { title, year, coauthors, venue, awards = [], summary, ssrn_url, pdf_url } = Astro.props;
+const href = ssrn_url ?? pdf_url;
+const coauthorLine = coauthors.length ? `with ${coauthors.join(', ')}` : null;
+const metaParts = [coauthorLine, venue, String(year)].filter(Boolean);
+---
+
+<article class="py-5">
+  {href ? (
+    <a href={href} class="text-lg font-medium block" style="color: var(--color-text);">{title}</a>
+  ) : (
+    <span class="text-lg font-medium block" style="color: var(--color-text);">{title}</span>
+  )}
+  <div class="text-sm mt-1" style="color: var(--color-text-muted);">
+    {metaParts.join(' · ')}
+    {awards.length > 0 && <span class="ml-2" style="color: var(--color-accent);" title={awards.join(' · ')}>★</span>}
+  </div>
+  {summary && <p class="mt-2" style="color: var(--color-text);">{summary}</p>}
+</article>
