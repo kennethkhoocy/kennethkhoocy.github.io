@@ -24,12 +24,12 @@ const pageDescription = description ?? 'Assistant Professor at NUS Faculty of La
     <script is:inline>
       (function () {
         try {
-          const stored = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (stored === 'dark' || (!stored && prefersDark)) {
+          if (localStorage.getItem('theme') !== 'light') {
             document.documentElement.classList.add('dark');
           }
-        } catch (_) {}
+        } catch (_) {
+          document.documentElement.classList.add('dark');
+        }
       })();
     </script>
     <ClientRouter />
