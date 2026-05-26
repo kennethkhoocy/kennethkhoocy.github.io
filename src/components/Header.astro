@@ -1,0 +1,24 @@
+---
+import ModeToggle from './ModeToggle.astro';
+
+const navItems = [
+  { href: '/research/', label: 'Research' },
+  { href: '/teaching/', label: 'Teaching' },
+  { href: '/cv/', label: 'CV' },
+  { href: '/news/', label: 'News' },
+  { href: '/talks/', label: 'Talks' },
+  { href: '/media/', label: 'Media' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b backdrop-blur" style="background: color-mix(in srgb, var(--color-bg) 80%, transparent); border-color: var(--color-border);">
+  <div class="mx-auto max-w-[960px] px-8 h-16 flex items-center justify-between">
+    <a href="/" class="font-semibold tracking-tight" style="color: var(--color-text);">Kenneth Khoo</a>
+    <nav class="flex items-center gap-6">
+      {navItems.map((item) => (
+        <a href={item.href} class="text-sm" style="color: var(--color-text-muted);">{item.label}</a>
+      ))}
+      <ModeToggle />
+    </nav>
+  </div>
+</header>
