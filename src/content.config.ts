@@ -25,6 +25,7 @@ const teaching = defineCollection({
     code: z.string().optional(),
     semesters: z.array(z.string()).default([]),
     syllabus_url: z.string().url().optional(),
+    materials_url: z.string().url().optional(),
     description: z.string(),
   }),
 });
