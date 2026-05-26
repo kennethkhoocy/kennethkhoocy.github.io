@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeaturedPaper from '../components/FeaturedPaper.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+
+const publications = await getCollection('publications', ({ data }) => data.featured);
+// Featured papers ascend by sort_key so the older but more prestigious paper
+// (Expanding Shareholder Voice) appears first, matching the previous site's order.
+const featured = publications.sort((a, b) => (a.data.sort_key ?? 0) - (b.data.sort_key ?? 0));
+---
+
+<BaseLayout>
+  <section class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-start">
+    <div>
+      <h1 class="text-3xl font-semibold tracking-tight" style="color: var(--color-text);">Kenneth Khoo</h1>
+      <p class="mt-2 text-lg" style="color: var(--color-text-muted);">Assistant Professor, NUS Faculty of Law</p>
+      <p class="mt-6 max-w-prose">Empirical research on corporate governance, antitrust, and the law-and-economics of financial markets. Previously a Program Fellow at Harvard Law School's Program on Corporate Governance.</p>
+      <div class="mt-6 flex flex-wrap gap-4 text-sm">
+        <a href="mailto:kenneth.khoo@nus.edu.sg">Email</a>
+        <a href="https://scholar.google.com/citations?user=DZ8K-s4AAAAJ">Scholar</a>
+        <a href="https://github.com/kennethkhoocy">GitHub</a>
+        <a href="https://www.linkedin.com/in/kenneth-khoo-72a49650">LinkedIn</a>
+        <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2570590">SSRN</a>
+      </div>
+    </div>
+    <img src="/images/headshot.jpg" alt="Kenneth Khoo" width="180" height="180" class="rounded-md" />
+  </section>
+
+  <SectionDivider label="Featured research" />
+
+  {featured.map((p) => (
+    <FeaturedPaper
+      title={p.data.title}
+      year={p.data.year}
+      coauthors={p.data.coauthors}
+      venue={p.data.venue}
+      awards={p.data.awards}
+      summary={p.data.summary}
+      ssrn_url={p.data.ssrn_url}
+      pdf_url={p.data.pdf_url}
+    />
+  ))}
+</BaseLayout>

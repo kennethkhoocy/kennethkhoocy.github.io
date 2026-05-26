@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PaperRow from '../components/PaperRow.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+
+const all = await getCollection('publications');
+const sortDesc = (a: typeof all[0], b: typeof all[0]) => (b.data.sort_key ?? 0) - (a.data.sort_key ?? 0);
+const published = all.filter((p) => p.data.status === 'published' || p.data.status === 'forthcoming').sort(sortDesc);
+const working = all.filter((p) => p.data.status === 'working_paper' || p.data.status === 'under_review').sort(sortDesc);
+---
+
+<BaseLayout title="Research">
+  <h1 class="text-3xl font-semibold tracking-tight" style="color: var(--color-text);">Research</h1>
+
+  <SectionDivider label="Published" />
+  {published.map((p) => (
+    <PaperRow
+      title={p.data.title}
+      year={p.data.year}
+      coauthors={p.data.coauthors}
+      venue={p.data.venue}
+      awards={p.data.awards}
+      ssrn_url={p.data.ssrn_url}
+      pdf_url={p.data.pdf_url}
+    />
+  ))}
+
+  <SectionDivider label="Working" />
+  {working.map((p) => (
+    <PaperRow
+      title={p.data.title}
+      year={p.data.year}
+      coauthors={p.data.coauthors}
+      venue={p.data.venue}
+      awards={p.data.awards}
+      ssrn_url={p.data.ssrn_url}
+      pdf_url={p.data.pdf_url}
+    />
+  ))}
+</BaseLayout>

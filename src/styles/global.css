@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bg: #FFFFFF;
+  --color-surface: #FAFAFA;
+  --color-text: #0B0D10;
+  --color-text-muted: #6B7280;
+  --color-border: #E5E7EB;
+  --color-accent: #1E3A8A;
+  --color-accent-hover: #1E40AF;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --color-bg: #0B0D10;
+  --color-surface: #15181D;
+  --color-text: #F5F5F5;
+  --color-text-muted: #9CA3AF;
+  --color-border: #22272E;
+  --color-accent: #60A5FA;
+  --color-accent-hover: #3B82F6;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  html { font-size: 16px; }
+}
+
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { color: var(--color-accent-hover); text-decoration: underline; }
+
+.font-mono { font-family: var(--font-mono); }
