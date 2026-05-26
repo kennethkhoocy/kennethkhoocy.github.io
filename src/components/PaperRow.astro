@@ -23,7 +23,6 @@ const metaParts = [coauthorLine, venue].filter(Boolean);
       ) : (
         <span class="font-medium" style="color: var(--color-text);">{title}</span>
       )}
-      {awards.length > 0 && <span class="ml-2" style="color: var(--color-accent);" title={awards.join(' · ')}>★</span>}
       <div class="text-sm mt-1" style="color: var(--color-text-muted);">{metaParts.join(' · ')}</div>
     </div>
     <div class="font-mono text-sm shrink-0" style="color: var(--color-text-muted);">{year}</div>
