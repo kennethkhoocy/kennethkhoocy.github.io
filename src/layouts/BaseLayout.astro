@@ -22,15 +22,21 @@ const pageDescription = description ?? 'Assistant Professor at NUS Faculty of La
     <meta name="description" content={pageDescription} />
     <title>{pageTitle}</title>
     <script is:inline>
-      (function () {
+      function applyTheme(html) {
         try {
-          if (localStorage.getItem('theme') !== 'light') {
-            document.documentElement.classList.add('dark');
+          if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+          } else {
+            html.classList.add('dark');
           }
         } catch (_) {
-          document.documentElement.classList.add('dark');
+          html.classList.add('dark');
         }
-      })();
+      }
+      applyTheme(document.documentElement);
+      document.addEventListener('astro:before-swap', (event) => {
+        applyTheme(event.newDocument.documentElement);
+      });
     </script>
     <ClientRouter />
   </head>
