@@ -40,7 +40,7 @@
 </style>
 
 <script is:inline>
-  (function () {
+  function setupModeToggle() {
     const root = document.documentElement;
     const group = document.getElementById('mode-toggle');
     if (!group) return;
@@ -66,5 +66,9 @@
     });
 
     paint();
-  })();
+  }
+
+  // astro:page-load fires on initial navigation AND after every ClientRouter
+  // swap, so the toggle re-binds itself to the freshly-swapped-in buttons.
+  document.addEventListener('astro:page-load', setupModeToggle);
 </script>
