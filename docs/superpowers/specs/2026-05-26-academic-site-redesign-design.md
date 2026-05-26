@@ -410,3 +410,9 @@ To keep the rewrite focused, the following are intentionally out of scope and ma
 ## 10. Open questions
 
 None at this time. All decisions resolved in §2.
+
+## 11. Reference data
+
+Authoritative content extracted from Kenneth's CV (the DOCX version is the source of truth per user; PDF used as cross-check) is captured in [`docs/superpowers/reference/2026-05-26-cv-extracted.md`](../reference/2026-05-26-cv-extracted.md). The implementation plan should treat that file as the source of truth for: appointments, education, awards, publication metadata, SSRN URLs (7 of 19 papers plus 1 GitHub-hosted PDF), and the talks/invited-presentations listing. SSRN URLs for the remaining 11 papers are to be sourced via firecrawl scrape of https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2570590 in migration step 1.
+
+The reference file also flags three discrepancies between the current `_publications/` folder and the CV that the migration must fix: a wrong SSRN ID on Visual Saliency, a renamed paper (Controlling Shareholders → Voting Rules and the Price of Peace), and three working papers missing from the existing folder (Singapore Equities Market, Neobrokers, Fork in Boardroom). Post-migration the publications collection should have **19 entries** total.
