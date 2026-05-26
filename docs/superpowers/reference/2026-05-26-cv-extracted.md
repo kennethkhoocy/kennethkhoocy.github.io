@@ -25,17 +25,17 @@ After cross-referencing the DOCX with the SSRN author page, 16 of the 19 papers 
 | 8 | The Impact of Antitrust Enforcement on China's Digital Platforms: Evidence from SAMR v. Alibaba | 2025 | published | 4850728 | IRLE Vol 83 Article 106268, with Lai (CityU) and Tian (Stanford GSB — NB: SSRN lists Tian at Stanford GSB, DOCX/PDF said NUS; SSRN is current) |
 | 9 | The Law and Economics of Shareholder Democracy | 2025 | forthcoming | 5138536 | EBOR forthcoming |
 | 10 | Expanding Shareholder Voice: The Impact of SEC Guidance on Environmental and Social Proposals | 2025 | forthcoming | 4913660 | JLE forthcoming, with Tallarita. Awards: Berkeley-ECGI 2024 Best Academic Paper (Junior); ALEA 2025 Best Paper Junior Scholars |
-| 11 | Common Ownership and ESG Performance: Evidence from the Blackrock-BGI Merger | 2023 | published (book chapter) | 4915568 | Hart Publishing, in *Investment Management, Stewardship and Sustainability*. **Title mismatch**: SSRN listing is "Common Ownership and Corporate Sustainability: Evidence from S&P 500 Firms" — same underlying paper, book-chapter cite in SSRN notes. Use DOCX title; link to SSRN |
+| 11 | Common Ownership and Corporate Sustainability: Evidence from S&P 500 Firms | 2023 | published (book chapter) | 4915568 | Published as book chapter "Common Ownership and ESG Performance: Evidence from the Blackrock-BGI Merger" in *Investment Management, Stewardship and Sustainability* (Hart Publishing 2023, eds. Iris Chiu & Hans Christoph Hirt, pp. 235–284). Display SSRN title; venue line cites the Hart book chapter |
 | 12 | The Price of Delaware Law Reform | 2025 | under_review | 5318203 | with Tallarita |
-| 13 | Visual Saliency and Investment Decisions | 2025 | working_paper | 5290238 | with Romano, Lee, Enriques, Desiato. **Title mismatch**: SSRN listing is "Visual Salience-Based Regulations and Investment Decisions". Use DOCX title; link to SSRN. SSRN also has an older 5149911 version — do not link |
+| 13 | Visual Salience-Based Regulations and Investment Decisions | 2025 | working_paper | 5290238 | with Romano, Lee, Enriques, Desiato. SSRN also has an older 5149911 version — do not link. (The DOCX still uses the older title "Visual Saliency and Investment Decisions"; site uses the current SSRN title) |
 | 14 | Reflecting on Reflective Loss | 2025 | working_paper | 5845363 | |
 | 15 | Voting Rules and the Price of Peace | 2025 | working_paper | — | No SSRN listing. Use GitHub PDF: https://kennethkhoocy.github.io/cv/Controlling_Shareholders.pdf. Previously titled "Controlling Shareholders and Supermajority Rules" |
-| 16 | Strengthening Singapore's Equities Market: Evidence from MAS Reforms | 2026 | working_paper | 6475958 | with Tjio. **Title mismatch**: SSRN listing is "The Regulatory Intermediation Gap: Evidence from Singapore's Equity Market Reform". Use DOCX title; link to SSRN |
+| 16 | The Regulatory Intermediation Gap: Evidence from Singapore's Equity Market Reform | 2026 | working_paper | 6475958 | with Tjio. (The DOCX uses an earlier title "Strengthening Singapore's Equities Market: Evidence from MAS Reforms"; site uses the current SSRN title) |
 | 17 | New Disclosure Obligations for Neobrokers | — | working_paper | — | No SSRN listing yet. With Romano + Enriques. Title only, no link |
 | 18 | The Fork in the Boardroom: Market Efficiency, Political Signaling, and the Specialist Director in China | — | working_paper | — | No SSRN listing yet. With Lin. Title only, no link |
 | 19 | Common Ownership, Markups and Corporate Governance | 2024 | working_paper | 4864154 | |
 
-**Three CV-vs-SSRN title mismatches to be aware of** (papers 11, 13, 16): SSRN's listing carries a different title from the DOCX. The DOCX title is the one Kenneth uses publicly (and what should appear on the website); the SSRN URL is still the correct destination.
+**Three CV-vs-SSRN title mismatches** (papers 11, 13, 16): SSRN's listing title differs from the DOCX. **Per user direction (2026-05-26), the SSRN title is authoritative for display on the website.** The publications collection should store the SSRN title; the DOCX title is kept here only as a reference for what the CV/old site previously called the paper.
 
 ## Identity
 
@@ -87,23 +87,23 @@ Law and Economics, Law and Finance, Antitrust and Competition Law, Corporate Gov
 
 ## Book chapter (1)
 
-11. "Common Ownership and ESG Performance: Evidence from the Blackrock-BGI Merger" — in *Investment Management, Stewardship and Sustainability* [2023], Hart Publishing, eds. Iris Chiu and Hans Christoph Hirt, pp. 235–284
+11. "Common Ownership and Corporate Sustainability: Evidence from S&P 500 Firms" (SSRN title) — published as "Common Ownership and ESG Performance: Evidence from the Blackrock-BGI Merger" in *Investment Management, Stewardship and Sustainability* [2023], Hart Publishing, eds. Iris Chiu and Hans Christoph Hirt, pp. 235–284
 
 ## Working papers (8)
 
 12. "The Price of Delaware Law Reform" (with Roberto Tallarita (Harvard)) — Under Review
     - SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5318203
-13. "Visual Saliency and Investment Decisions" (with Alessandro Romano (Bocconi), Alex Lee (Northwestern), Luca Enriques (Oxford), Alfredo Desiato (Aston))
+13. "Visual Salience-Based Regulations and Investment Decisions" (SSRN title; DOCX uses older "Visual Saliency and Investment Decisions") (with Alessandro Romano (Bocconi), Alex Lee (Northwestern), Luca Enriques (Oxford), Alfredo Desiato (Aston))
     - SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5290238
-    - NB: site's `_publications/2025-visual-saliency.md` currently uses `5149911`; the CV is the source of truth — use `5290238`
+    - NB: site's `_publications/2025-visual-saliency.md` currently uses `5149911`; use `5290238` (current version, current title)
 14. "Reflecting on Reflective Loss"
     - SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5845363
 15. "Voting Rules and the Price of Peace"
     - PDF: https://kennethkhoocy.github.io/cv/Controlling_Shareholders.pdf (no SSRN listed)
     - NB: this paper was previously titled "Controlling Shareholders and Supermajority Rules" (the PDF filename and the existing `_publications/2025-controlling-shareholders-supermajority.md` reflect the old title). Migration must rename to the new title; historical talks listed under the old title (2025 talks at CUPL and LET XIV) keep the old title as a record of how it was presented.
-16. "Strengthening Singapore's Equities Market: Evidence from MAS Reforms" (with Hans Tjio (NUS))
+16. "The Regulatory Intermediation Gap: Evidence from Singapore's Equity Market Reform" (SSRN title; DOCX uses earlier "Strengthening Singapore's Equities Market: Evidence from MAS Reforms") (with Hans Tjio (NUS))
     - SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6475958
-    - NB: NEW since the existing `_publications/` folder was last updated. Promoted from "in progress" to "working paper" between the PDF and DOCX versions of the CV. Add as a new publication entry.
+    - NB: NEW since the existing `_publications/` folder was last updated. Promoted from "in progress" to "working paper" between the PDF and DOCX versions of the CV. Add as a new publication entry using the SSRN title.
 17. "New Disclosure Obligations for Neobrokers" (with Alessandro Romano (Bocconi) and Luca Enriques (Bocconi))
     - No URL listed in CV. NB: NEW — also promoted from in-progress.
 18. "The Fork in the Boardroom: Market Efficiency, Political Signaling, and the Specialist Director in China" (with Lin Lin (NUS))
@@ -186,7 +186,7 @@ The implementation plan should:
 **Existing `_publications/` discrepancies to fix during migration:**
 1. `2025-visual-saliency.md` uses SSRN ID `5149911`; the CV gives `5290238`. Use the CV's value.
 2. `2025-controlling-shareholders-supermajority.md` uses the old title "Controlling Shareholders and Supermajority Rules"; the new title is "Voting Rules and the Price of Peace". Rename slug to e.g. `2025-voting-rules-price-of-peace`.
-3. **Missing entry**: "Strengthening Singapore's Equities Market: Evidence from MAS Reforms" (SSRN 6475958, with Hans Tjio) — add as a new working-paper entry.
+3. **Missing entry**: "The Regulatory Intermediation Gap: Evidence from Singapore's Equity Market Reform" (SSRN 6475958, with Hans Tjio) — add as a new working-paper entry (use SSRN title).
 4. **Missing entry**: "New Disclosure Obligations for Neobrokers" (with Romano + Enriques) — add as a new working-paper entry, no SSRN yet.
 5. **Missing entry**: "The Fork in the Boardroom" (with Lin Lin) — add as a new working-paper entry, no SSRN yet.
 
