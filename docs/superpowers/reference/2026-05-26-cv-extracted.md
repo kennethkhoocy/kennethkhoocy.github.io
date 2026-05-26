@@ -3,10 +3,39 @@
 **Source files:**
 - **DOCX (authoritative):** `C:\Users\Kenneth\Dropbox\NUS Work\Admin\CV\Github\Kenneth Khoo CV.docx` — extracted via word-docx `extract-text`
 - PDF (cross-check, slightly stale): `C:\Users\Kenneth\Dropbox\NUS Work\Admin\CV\Github\Kenneth Khoo CV.pdf` — extracted via pypdf
+- SSRN author page (URL source-of-truth for paper links): https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2570590 — scraped via firecrawl on 2026-05-26, cached at `C:/Users/Kenneth/.firecrawl/khoo_ssrn.md`
 
-**Extracted:** 2026-05-26. Per the user, the DOCX is the source of truth. The PDF is the same document rendered to print but is slightly stale (paper title change + three papers promoted from in-progress to working since the PDF was last regenerated).
+**Extracted:** 2026-05-26. Per the user, the DOCX is the source of truth for titles/authors/status. SSRN is the source of truth for abstract URLs.
 
-**Purpose:** Reference data for the academic site redesign implementation. Authoritative source for appointments, education, awards, publication metadata, SSRN URLs (7 of 19 listed papers + 1 GitHub-hosted PDF), and the talks/invited-presentations listing. SSRN URLs for the remaining 11 papers are to be sourced via firecrawl scrape of https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2570590 in migration step 1.
+**Purpose:** Reference data for the academic site redesign implementation. Authoritative source for appointments, education, awards, publication metadata, SSRN URLs (16 of 19 papers), and the talks/invited-presentations listing.
+
+## SSRN URL coverage map
+
+After cross-referencing the DOCX with the SSRN author page, 16 of the 19 papers have SSRN abstract URLs. The full mapping is below; use these URLs verbatim when populating the publications collection.
+
+| # | DOCX title | Year | Status | SSRN abstract ID | Notes |
+|---|---|---|---|---|---|
+| 1 | Regulating the Inferential Process in Alleged Article 101 TFEU Infringements | 2017 | published | 2808824 | JCLE 13(1):45–88 |
+| 2 | Singapore's Competition Regime and its Objectives: The Case Against Formalism | 2019 | published | 3763649 | SJLS 1:67–107, with Sng. (SSRN also lists 3332802 and 3398716 as older paywalled versions — link to 3763649, the free current version) |
+| 3 | The Inefficiency of Quasi-Per Se Rules: Regulating Information Exchange in EU and US Antitrust Law | 2020 | published | 3498616 | ABLJ 57(1):45–111, with Soh |
+| 4 | Facilitating the Optimal Mechanism in Mergers & Acquisitions | 2020 | published | 3548402 | JILS 11(2):108–139, with Tjio |
+| 5 | Anticompetitive Mergers in Two-Sided Digital Platform Markets: The Case of Uber-Grab | 2021 | published | 3712823 | SAcLJ 33:202–240. NB: SSRN title hyphenates as "Anti-Competitive"; site can keep DOCX form |
+| 6 | Transaction Costs in Common Ownership | 2023 | published | 4067883 | U Penn JBL 25(1):209–294 |
+| 7 | Gender Gaps in Legal Education: The Impact of Class Participation Assessments | 2023 | published | 4227446 | JELS 20(4):1070–1137, with Neo |
+| 8 | The Impact of Antitrust Enforcement on China's Digital Platforms: Evidence from SAMR v. Alibaba | 2025 | published | 4850728 | IRLE Vol 83 Article 106268, with Lai (CityU) and Tian (Stanford GSB — NB: SSRN lists Tian at Stanford GSB, DOCX/PDF said NUS; SSRN is current) |
+| 9 | The Law and Economics of Shareholder Democracy | 2025 | forthcoming | 5138536 | EBOR forthcoming |
+| 10 | Expanding Shareholder Voice: The Impact of SEC Guidance on Environmental and Social Proposals | 2025 | forthcoming | 4913660 | JLE forthcoming, with Tallarita. Awards: Berkeley-ECGI 2024 Best Academic Paper (Junior); ALEA 2025 Best Paper Junior Scholars |
+| 11 | Common Ownership and ESG Performance: Evidence from the Blackrock-BGI Merger | 2023 | published (book chapter) | 4915568 | Hart Publishing, in *Investment Management, Stewardship and Sustainability*. **Title mismatch**: SSRN listing is "Common Ownership and Corporate Sustainability: Evidence from S&P 500 Firms" — same underlying paper, book-chapter cite in SSRN notes. Use DOCX title; link to SSRN |
+| 12 | The Price of Delaware Law Reform | 2025 | under_review | 5318203 | with Tallarita |
+| 13 | Visual Saliency and Investment Decisions | 2025 | working_paper | 5290238 | with Romano, Lee, Enriques, Desiato. **Title mismatch**: SSRN listing is "Visual Salience-Based Regulations and Investment Decisions". Use DOCX title; link to SSRN. SSRN also has an older 5149911 version — do not link |
+| 14 | Reflecting on Reflective Loss | 2025 | working_paper | 5845363 | |
+| 15 | Voting Rules and the Price of Peace | 2025 | working_paper | — | No SSRN listing. Use GitHub PDF: https://kennethkhoocy.github.io/cv/Controlling_Shareholders.pdf. Previously titled "Controlling Shareholders and Supermajority Rules" |
+| 16 | Strengthening Singapore's Equities Market: Evidence from MAS Reforms | 2026 | working_paper | 6475958 | with Tjio. **Title mismatch**: SSRN listing is "The Regulatory Intermediation Gap: Evidence from Singapore's Equity Market Reform". Use DOCX title; link to SSRN |
+| 17 | New Disclosure Obligations for Neobrokers | — | working_paper | — | No SSRN listing yet. With Romano + Enriques. Title only, no link |
+| 18 | The Fork in the Boardroom: Market Efficiency, Political Signaling, and the Specialist Director in China | — | working_paper | — | No SSRN listing yet. With Lin. Title only, no link |
+| 19 | Common Ownership, Markups and Corporate Governance | 2024 | working_paper | 4864154 | |
+
+**Three CV-vs-SSRN title mismatches to be aware of** (papers 11, 13, 16): SSRN's listing carries a different title from the DOCX. The DOCX title is the one Kenneth uses publicly (and what should appear on the website); the SSRN URL is still the correct destination.
 
 ## Identity
 

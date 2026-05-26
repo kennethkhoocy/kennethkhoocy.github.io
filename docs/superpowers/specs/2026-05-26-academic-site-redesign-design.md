@@ -369,7 +369,7 @@ Phased execution on a new `astro-rewrite` branch, merged in a single PR at cutov
 
 | # | Step | Notes |
 |---|---|---|
-| 1 | Scrape SSRN URLs | Use firecrawl CLI on https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2570590; map abstract URLs to the 16 papers by title; cross-check against `C:\Users\Kenneth\Dropbox\NUS Work\Admin\CV\Github\Kenneth Khoo CV.pdf` |
+| 1 | Load publication metadata | Already done in brainstorming. Pull from `docs/superpowers/reference/2026-05-26-cv-extracted.md` (§ "SSRN URL coverage map"): 19 papers, 16 with SSRN URLs, 1 with GitHub PDF, 2 with no link |
 | 2 | Archive Jekyll files | Move all current top-level Jekyll files (`_config.yml`, `_pages/`, `_publications/`, `_teaching/`, `_layouts/`, `_includes/`, `_sass/`, `_data/`, `_drafts/`, `_portfolio/`, `assets/`, `Gemfile`, `Dockerfile`, `markdown_generator/`, `talkmap.*`, etc.) into `_legacy-jekyll/` on the rewrite branch. Copy `cv/Kenneth Khoo CV.pdf` → `public/cv/Kenneth Khoo CV.pdf` and `images/1760923711828.jpg` → `public/images/headshot.jpg` as part of the new structure |
 | 3 | Scaffold Astro app | `npm create astro@latest`, configure Tailwind v4 + content collections |
 | 4 | Implement collection schemas | `src/content.config.ts` per §6 |
@@ -413,6 +413,8 @@ None at this time. All decisions resolved in §2.
 
 ## 11. Reference data
 
-Authoritative content extracted from Kenneth's CV (the DOCX version is the source of truth per user; PDF used as cross-check) is captured in [`docs/superpowers/reference/2026-05-26-cv-extracted.md`](../reference/2026-05-26-cv-extracted.md). The implementation plan should treat that file as the source of truth for: appointments, education, awards, publication metadata, SSRN URLs (7 of 19 papers plus 1 GitHub-hosted PDF), and the talks/invited-presentations listing. SSRN URLs for the remaining 11 papers are to be sourced via firecrawl scrape of https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2570590 in migration step 1.
+Authoritative content for the redesign is captured in [`docs/superpowers/reference/2026-05-26-cv-extracted.md`](../reference/2026-05-26-cv-extracted.md). That file is the source of truth for: appointments, education, awards, publication metadata, the full **SSRN URL coverage map** (16 of 19 papers have direct SSRN links; the remaining 3 are either a GitHub-hosted PDF or have no public posting yet), and the talks/invited-presentations listing. Source materials: DOCX of the CV (titles/authors/status), SSRN author page scraped via firecrawl (abstract URLs).
 
-The reference file also flags three discrepancies between the current `_publications/` folder and the CV that the migration must fix: a wrong SSRN ID on Visual Saliency, a renamed paper (Controlling Shareholders → Voting Rules and the Price of Peace), and three working papers missing from the existing folder (Singapore Equities Market, Neobrokers, Fork in Boardroom). Post-migration the publications collection should have **19 entries** total.
+The reference file also flags fixes the migration must make to the existing `_publications/` folder: a wrong SSRN ID on Visual Saliency, a renamed paper (Controlling Shareholders → Voting Rules and the Price of Peace), three missing working papers (Singapore Equities Market, Neobrokers, Fork in Boardroom), and three CV-vs-SSRN title mismatches where the DOCX title should be displayed but the SSRN URL is still the correct destination. Post-migration the publications collection should have **19 entries** total.
+
+With SSRN URLs now pre-populated in the reference file, migration step 1 simplifies to "load URLs from the reference file" instead of "scrape SSRN."
