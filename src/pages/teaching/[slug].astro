@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('teaching');
+  return courses.map((c) => ({ params: { slug: c.id }, props: { entry: c } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title}>
+  <h1 class="text-3xl font-semibold tracking-tight" style="color: var(--color-text);">{entry.data.title}</h1>
+  {entry.data.code && <div class="mt-1 text-sm" style="color: var(--color-text-muted);">{entry.data.code}</div>}
+  {entry.data.semesters.length > 0 && (
+    <div class="mt-1 text-sm" style="color: var(--color-text-muted);">Taught: {entry.data.semesters.join(' · ')}</div>
+  )}
+  <p class="mt-4 text-lg" style="color: var(--color-text);">{entry.data.description}</p>
+  <div class="mt-4 flex flex-wrap gap-4 text-sm">
+    {entry.data.materials_url && <a href={entry.data.materials_url}>Course materials (GitHub) →</a>}
+    {entry.data.syllabus_url && <a href={entry.data.syllabus_url}>Syllabus (PDF)</a>}
+  </div>
+  <div class="mt-8">
+    <Content />
+  </div>
+</BaseLayout>
