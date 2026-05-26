@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+
+const entries = await getCollection('news');
+const sorted = entries.sort((a, b) => b.data.date.localeCompare(a.data.date));
+const byYear: Record<string, typeof sorted> = {};
+for (const e of sorted) {
+  const yr = e.data.date.slice(0, 4);
+  (byYear[yr] ??= []).push(e);
+}
+const years = Object.keys(byYear).sort((a, b) => b.localeCompare(a));
+---
+
+<BaseLayout title="News">
+  <h1 class="text-3xl font-semibold tracking-tight" style="color: var(--color-text);">News</h1>
+  {years.length === 0 ? (
+    <p class="mt-6" style="color: var(--color-text-muted);">No updates posted yet.</p>
+  ) : years.map((yr) => (
+    <>
+      <SectionDivider label={yr} />
+      <ul class="space-y-3">
+        {byYear[yr].map((e) => (
+          <li class="flex gap-4">
+            <span class="font-mono text-sm shrink-0" style="color: var(--color-text-muted);">{e.data.date}</span>
+            <span>{e.data.body}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  ))}
+</BaseLayout>
