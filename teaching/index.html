@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Assistant Professor at NUS Faculty of Law. Research in corporate governance, antitrust, and law and economics."><title>Teaching — Kenneth Khoo</title><script>
+      function applyTheme(html) {
+        try {
+          if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+          } else {
+            html.classList.add('dark');
+          }
+        } catch (_) {
+          html.classList.add('dark');
+        }
+      }
+      applyTheme(document.documentElement);
+      document.addEventListener('astro:before-swap', (event) => {
+        applyTheme(event.newDocument.documentElement);
+      });
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><link rel="stylesheet" href="/_astro/curriculum.Y7Y3MP_G.css"></head> <body class="min-h-screen flex flex-col"> <header class="sticky top-0 z-50 border-b backdrop-blur" style="background: color-mix(in srgb, var(--color-bg) 80%, transparent); border-color: var(--color-border);"> <div class="mx-auto max-w-[960px] px-8 h-16 flex items-center justify-between"> <a href="/" class="font-semibold tracking-tight" style="color: var(--color-text);">Kenneth Khoo</a> <nav class="flex items-center gap-6"> <a href="/research/" class="text-sm" style="color: var(--color-text-muted);">Research</a><a href="/teaching/" class="text-sm" style="color: var(--color-text-muted);">Teaching</a><a href="/curriculum/" class="text-sm" style="color: var(--color-text-muted);">CV</a><a href="/news/" class="text-sm" style="color: var(--color-text-muted);">News</a><a href="/talks/" class="text-sm" style="color: var(--color-text-muted);">Talks</a><a href="/media/" class="text-sm" style="color: var(--color-text-muted);">Media</a> <div id="mode-toggle" role="group" aria-label="Color mode" class="inline-flex items-center rounded-md border overflow-hidden" style="border-color: var(--color-border);" data-astro-cid-3tss6vsj> <button type="button" data-mode="light" aria-label="Light mode" class="mode-btn px-2 py-1.5 flex items-center justify-center" style="color: var(--color-text-muted);" data-astro-cid-3tss6vsj> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3tss6vsj> <circle cx="12" cy="12" r="4" data-astro-cid-3tss6vsj></circle> <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" data-astro-cid-3tss6vsj></path> </svg> </button> <button type="button" data-mode="dark" aria-label="Dark mode" class="mode-btn px-2 py-1.5 flex items-center justify-center border-l" style="color: var(--color-text-muted); border-color: var(--color-border);" data-astro-cid-3tss6vsj> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3tss6vsj> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-3tss6vsj></path> </svg> </button> </div>  <script>
+  function setupModeToggle() {
+    const root = document.documentElement;
+    const group = document.getElementById('mode-toggle');
+    if (!group) return;
+    const buttons = group.querySelectorAll('.mode-btn');
+
+    function paint() {
+      const mode = root.classList.contains('dark') ? 'dark' : 'light';
+      buttons.forEach((b) => b.setAttribute('aria-pressed', b.dataset.mode === mode ? 'true' : 'false'));
+    }
+
+    buttons.forEach((b) => {
+      b.addEventListener('click', () => {
+        const mode = b.dataset.mode;
+        if (mode === 'dark') {
+          root.classList.add('dark');
+          try { localStorage.setItem('theme', 'dark'); } catch (_) {}
+        } else {
+          root.classList.remove('dark');
+          try { localStorage.setItem('theme', 'light'); } catch (_) {}
+        }
+        paint();
+      });
+    });
+
+    paint();
+  }
+
+  // astro:page-load fires on initial navigation AND after every ClientRouter
+  // swap, so the toggle re-binds itself to the freshly-swapped-in buttons.
+  document.addEventListener('astro:page-load', setupModeToggle);
+</script> </nav> </div> </header> <main class="flex-1 mx-auto w-full max-w-[960px] px-8 py-16">  <h1 class="text-3xl font-semibold tracking-tight" style="color: var(--color-text);">Teaching</h1> <div class="flex items-center gap-4 my-10"> <span class="text-xs uppercase tracking-widest" style="color: var(--color-text-muted);">Current and recent courses</span> <div class="flex-1 border-t" style="border-color: var(--color-border);"></div> </div> <ul class="space-y-6"> <li> <a href="/teaching/advanced-corporate-finance/" class="text-lg font-medium block">Advanced Corporate Finance</a> <div class="text-sm" style="color: var(--color-text-muted);">LL4554V</div> <p class="mt-1">Graduate course introducing core finance concepts for law students, covering asset pricing, the Efficient Market Hypothesis, the Capital Asset Pricing Model, derivative pricing, capital structures, M&amp;A, corporate governance, and securities regulation.</p> <p class="mt-1 text-sm"><a href="https://github.com/kennethkhoocy/teaching/tree/main/CorpFin">Course materials (GitHub) →</a></p> </li><li> <a href="/teaching/company-law/" class="text-lg font-medium block">Company Law</a> <div class="text-sm" style="color: var(--color-text-muted);">LL4030 / LL5030</div> <p class="mt-1">Core company law course covering incorporation, corporate personality, directors&#39; duties, shareholder rights, corporate finance, and corporate insolvency, taught at the National University of Singapore, Faculty of Law.</p> <p class="mt-1 text-sm"><a href="https://github.com/kennethkhoocy/teaching/tree/main/CorpLaw">Course materials (GitHub) →</a></p> </li><li> <a href="/teaching/corporate-law-and-economics/" class="text-lg font-medium block">Corporate Law and Economics</a> <div class="text-sm" style="color: var(--color-text-muted);">LL4489V</div> <p class="mt-1">Graduate seminar on the economic considerations informing corporate laws and governance arrangements across key jurisdictions, covering shareholder-director relations, institutional investors, ESG, activist shareholders, and stakeholder capitalism.</p> <p class="mt-1 text-sm"><a href="https://github.com/kennethkhoocy/teaching/tree/main/CorpLnE">Course materials (GitHub) →</a></p> </li> </ul>  </main> <footer class="border-t mt-24 py-10" style="border-color: var(--color-border);"> <div class="mx-auto max-w-[960px] px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm" style="color: var(--color-text-muted);"> <div class="flex flex-wrap gap-x-4 gap-y-1"> <a href="mailto:kenneth.khoo@nus.edu.sg" class="hover:underline" style="color: var(--color-text-muted);">Email</a><a href="https://scholar.google.com/citations?user=DZ8K-s4AAAAJ" class="hover:underline" style="color: var(--color-text-muted);">Google Scholar</a><a href="https://github.com/kennethkhoocy" class="hover:underline" style="color: var(--color-text-muted);">GitHub</a><a href="https://www.linkedin.com/in/kenneth-khoo-72a49650" class="hover:underline" style="color: var(--color-text-muted);">LinkedIn</a><a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2570590" class="hover:underline" style="color: var(--color-text-muted);">SSRN</a> </div> <div>© 2026 Kenneth Khoo · Built with Astro</div> </div> </footer> </body></html>
