@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
+import CourseMaterials from '../../components/CourseMaterials.astro';
 
 export async function getStaticPaths() {
   const courses = await getCollection('teaching');
@@ -18,11 +20,23 @@ const { Content } = await render(entry);
     <div class="mt-1 text-sm" style="color: var(--color-text-muted);">Taught: {entry.data.semesters.join(' · ')}</div>
   )}
   <p class="mt-4 text-lg" style="color: var(--color-text);">{entry.data.description}</p>
-  <div class="mt-4 flex flex-wrap gap-4 text-sm">
-    {entry.data.materials_url && <a href={entry.data.materials_url}>Course materials (GitHub) →</a>}
-    {entry.data.syllabus_url && <a href={entry.data.syllabus_url}>Syllabus (PDF)</a>}
-  </div>
+  {entry.data.syllabus_url && (
+    <div class="mt-4 text-sm">
+      <a href={entry.data.syllabus_url}>Syllabus (PDF)</a>
+    </div>
+  )}
   <div class="mt-8">
     <Content />
   </div>
+  {entry.data.materials_path && (
+    <div class="mt-4">
+      <SectionDivider label="Course materials" />
+      <p class="mb-4 text-sm" style="color: var(--color-text-muted);">Download individual lecture slides and the syllabus below.</p>
+      <CourseMaterials
+        repo={entry.data.materials_repo}
+        path={entry.data.materials_path}
+        branch={entry.data.materials_branch}
+      />
+    </div>
+  )}
 </BaseLayout>

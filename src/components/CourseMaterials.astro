@@ -1,0 +1,72 @@
+---
+interface Props {
+  repo: string;
+  path: string;
+  branch?: string;
+}
+
+const { repo, path, branch = 'main' } = Astro.props;
+
+type FileItem = { name: string; size: number; url: string; ext: string };
+
+// Authenticate when a token is available (CI sets GITHUB_TOKEN) to lift the
+// unauthenticated 60/hr API rate limit; public-repo reads work either way.
+const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
+const apiUrl = `https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`;
+const folderUrl = `https://github.com/${repo}/tree/${branch}/${path}`;
+
+let files: FileItem[] = [];
+let error = false;
+
+try {
+  const res = await fetch(apiUrl, {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'User-Agent': 'kennethkhoocy.github.io-build',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+  });
+  if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+  const data = await res.json();
+  files = (Array.isArray(data) ? data : [])
+    .filter((e: any) => e.type === 'file')
+    .filter((e: any) => !['readme.md', 'license'].includes(e.name.toLowerCase()))
+    .map((e: any) => ({
+      name: e.name,
+      size: e.size as number,
+      url: e.download_url as string,
+      ext: (e.name.split('.').pop() || '').toUpperCase(),
+    }));
+  // Sort: non-numbered files (syllabus) first, then by leading lecture number.
+  files.sort((a, b) => {
+    const ka = a.name.match(/^(\d+)/) ? parseInt(a.name.match(/^(\d+)/)![1], 10) : -1;
+    const kb = b.name.match(/^(\d+)/) ? parseInt(b.name.match(/^(\d+)/)![1], 10) : -1;
+    return ka !== kb ? ka - kb : a.name.localeCompare(b.name);
+  });
+} catch (_) {
+  error = true;
+}
+
+function humanSize(bytes: number): string {
+  if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  if (bytes >= 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${bytes} B`;
+}
+---
+
+{error ? (
+  <p class="text-sm" style="color: var(--color-text-muted);">
+    Materials list is temporarily unavailable. <a href={folderUrl}>Browse on GitHub →</a>
+  </p>
+) : files.length === 0 ? (
+  <p class="text-sm" style="color: var(--color-text-muted);">No materials posted yet.</p>
+) : (
+  <ul>
+    {files.map((f) => (
+      <li class="py-2 flex items-baseline justify-between gap-4 border-b" style="border-color: var(--color-border);">
+        <a href={f.url} download={f.name} class="flex-1 break-words">{f.name}</a>
+        <span class="font-mono text-xs shrink-0 whitespace-nowrap" style="color: var(--color-text-muted);">{f.ext} · {humanSize(f.size)}</span>
+      </li>
+    ))}
+  </ul>
+)}

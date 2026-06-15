@@ -27,6 +27,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Ensure .nojekyll in dist
         run: touch dist/.nojekyll
       - name: Deploy to gh-pages branch
