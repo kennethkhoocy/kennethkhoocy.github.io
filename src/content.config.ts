@@ -33,25 +33,6 @@ const teaching = defineCollection({
   }),
 });
 
-const news = defineCollection({
-  loader: glob({ pattern: '**/*.yml', base: './src/content/news' }),
-  schema: z.object({
-    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-    body: z.string(),
-  }),
-});
-
-const talks = defineCollection({
-  loader: glob({ pattern: '**/*.yml', base: './src/content/talks' }),
-  schema: z.object({
-    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-    venue: z.string(),
-    paper_title: z.string(),
-    paper_ssrn_url: z.string().url().optional(),
-    slides_url: z.string().url().optional(),
-  }),
-});
-
 const media = defineCollection({
   loader: glob({ pattern: '**/*.yml', base: './src/content/media' }),
   schema: z.object({
@@ -74,4 +55,4 @@ const software = defineCollection({
   }),
 });
 
-export const collections = { publications, teaching, news, talks, media, software };
+export const collections = { publications, teaching, media, software };
