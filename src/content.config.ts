@@ -63,4 +63,15 @@ const media = defineCollection({
   }),
 });
 
-export const collections = { publications, teaching, news, talks, media };
+const software = defineCollection({
+  loader: glob({ pattern: '**/*.yml', base: './src/content/software' }),
+  schema: z.object({
+    name: z.string(),
+    repo_url: z.string().url(),
+    language: z.string().optional(),
+    description: z.string(),
+    sort_key: z.number().int().optional(),
+  }),
+});
+
+export const collections = { publications, teaching, news, talks, media, software };

@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
+
+const projects = await getCollection('software');
+const sorted = projects.sort((a, b) => {
+  const ka = a.data.sort_key ?? Number.MAX_SAFE_INTEGER;
+  const kb = b.data.sort_key ?? Number.MAX_SAFE_INTEGER;
+  return ka !== kb ? ka - kb : a.data.name.localeCompare(b.data.name);
+});
+---
+
+<BaseLayout title="Software">
+  <h1 class="text-3xl font-semibold tracking-tight" style="color: var(--color-text);">Software</h1>
+  <SectionDivider label="Research software" />
+  <ul class="space-y-6">
+    {sorted.map((p) => (
+      <li>
+        <a href={p.data.repo_url} class="text-lg font-medium block font-mono">{p.data.name}</a>
+        {p.data.language && <div class="text-sm" style="color: var(--color-text-muted);">{p.data.language}</div>}
+        <p class="mt-1">{p.data.description}</p>
+        <p class="mt-1 text-sm"><a href={p.data.repo_url}>View repository on GitHub →</a></p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

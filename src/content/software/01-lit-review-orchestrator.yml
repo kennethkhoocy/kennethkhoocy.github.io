@@ -1,0 +1,5 @@
+name: "lit-review-orchestrator"
+repo_url: "https://github.com/kennethkhoocy/lit-review-orchestrator"
+language: "Python"
+sort_key: 1
+description: "A document-driven literature-review pipeline that turns a manuscript, abstract, or proposal into a deduplicated, relevance-ranked bibliography. It extracts a search plan from the document, runs several deep-research engines concurrently (Undermind, Gemini Deep Research, and Google Scholar), and fuses their results into a single list. Before any reference reaches the output, a verification stage confirms each candidate against OpenAlex, Crossref, or Semantic Scholar and drops anything none can confirm, removing the fabricated citations that language-model searches are prone to produce. Distributed as a Claude Code skill, it delivers the screened results as a relevance-ranked spreadsheet alongside RIS and BibTeX exports."
