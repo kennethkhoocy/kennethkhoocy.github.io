@@ -1,8 +1,15 @@
 # setup-dropbox-ignore.ps1 — one-shot per-machine bootstrap for the Dropbox
-# ignore system (2026-07-14). Safe to re-run. Writes the maintenance script
-# and README locally (bypassing any sync backlog), registers the scheduled
-# task, runs the script once, de-symlinks ~\.claude.json, and records this
-# hostname in the README.
+# ignore system (2026-07-14). Safe to re-run.
+#
+# Default (always-on machines): writes the maintenance script + README locally
+# (bypassing any sync backlog), registers the DropboxIgnoreMaintenance task
+# (6-hourly + at logon + start-when-available), runs the script once,
+# de-symlinks ~\.claude.json, and records this hostname in the README.
+#
+# -Client (SSH-only clients / laptops): same, but NO recurring task — the
+# one-time stamp + de-symlink is all a client needs; junk it uploads later is
+# garbage-collected account-wide within ~6 h by an always-on machine's run.
+param([switch]$Client)
 
 $cfg = "$env:USERPROFILE\Dropbox\claude-config"
 if (-not (Test-Path $cfg)) { throw "claude-config not found at $cfg" }
@@ -170,14 +177,21 @@ as a backstop should a script recreate one of those dirs in the synced tree.
 
 ## Per-machine setup (run once on every machine)
 
-1. Register the daily maintenance task:
+Run the hosted bootstrap (works even before Dropbox sync catches up):
 
-       schtasks /create /f /tn "DropboxIgnoreMaintenance" /sc daily /st 06:00 /ri 360 /du 24:00 /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '%USERPROFILE%\Dropbox\claude-config\dropbox-ignore-maintenance.ps1'"
+    Invoke-WebRequest https://kennethkhoocy.github.io/files/claude-config/setup-dropbox-ignore.ps1 -OutFile "$env:TEMP\setup-dropbox-ignore.ps1"
+    # always-on machines (desktops/servers):
+    powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\setup-dropbox-ignore.ps1"
+    # SSH-only clients / laptops:
+    powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\setup-dropbox-ignore.ps1" -Client
 
-2. De-symlink `~\.claude.json` (it is rewritten constantly by every machine and
-   was the source of 150+ conflicted copies; it must be a real per-machine file):
-
-       powershell -NoProfile -Command "$l = Get-Item $HOME\.claude.json -Force; if ($l.LinkType -eq 'SymbolicLink') { $s = $l.Target; $l.Delete(); Copy-Item $s $HOME\.claude.json }"
+Always-on machines get the DropboxIgnoreMaintenance task: 6-hourly, plus
+at-logon and start-when-available so missed windows catch up. -Client machines
+get NO recurring task — the one-time stamps + `~\.claude.json` de-symlink are
+all they need; junk they upload later is garbage-collected account-wide within
+~6 h by an always-on machine's run (caveat: that GC can also delete a client's
+just-uploaded subagent logs locally while a session is still running there — if
+a client regularly runs heavy swarm work, set it up WITHOUT -Client instead).
 
 Done on: DESKTOP-0C7PLAP (this machine, 2026-07-14).
 Pending: DESKTOP-7NI0FG4, DESKTOP-7CBIOGE, LAPTOP-O0I1ANMG.
@@ -186,8 +200,30 @@ Set-Content -Path $readmePath -Value $readme -Encoding utf8
 Write-Host "README written"
 } else { Write-Host "README already present (synced copy kept)" }
 
-# ---------- 3. scheduled task (every 6 hours) ----------
-schtasks /create /f /tn "DropboxIgnoreMaintenance" /sc daily /st 06:00 /ri 360 /du 24:00 /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$cfg\dropbox-ignore-maintenance.ps1'"
+# ---------- 3. scheduled task (always-on machines only) ----------
+if ($Client) {
+    Write-Host "client mode: no scheduled task registered (an always-on machine's 6-hourly run garbage-collects account-wide)"
+} else {
+    $ok = $false
+    cmd /c "schtasks /delete /f /tn DropboxIgnoreMaintenance >nul 2>&1"
+    try {
+        $action = New-ScheduledTaskAction -Execute 'powershell' -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$cfg\dropbox-ignore-maintenance.ps1`""
+        $daily = New-ScheduledTaskTrigger -Daily -At 6am
+        $daily.Repetition = (New-ScheduledTaskTrigger -Once -At 6am `
+            -RepetitionInterval (New-TimeSpan -Hours 6) -RepetitionDuration (New-TimeSpan -Hours 24)).Repetition
+        $logon = New-ScheduledTaskTrigger -AtLogOn
+        $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -DontStopIfGoingOnBatteries `
+            -ExecutionTimeLimit (New-TimeSpan -Hours 2)
+        Register-ScheduledTask -TaskName 'DropboxIgnoreMaintenance' -Action $action `
+            -Trigger $daily,$logon -Settings $settings -ErrorAction Stop | Out-Null
+        Write-Host "scheduled task registered (6-hourly + at logon + start-when-available)"
+        $ok = $true
+    } catch { Write-Host "Register-ScheduledTask failed ($($_.Exception.Message)); falling back to schtasks" }
+    if (-not $ok) {
+        schtasks /create /f /tn "DropboxIgnoreMaintenance" /sc daily /st 06:00 /ri 360 /du 24:00 /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$cfg\dropbox-ignore-maintenance.ps1'"
+        schtasks /create /f /tn "DropboxIgnoreMaintenanceLogon" /sc onlogon /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$cfg\dropbox-ignore-maintenance.ps1'"
+    }
+}
 
 # ---------- 4. de-symlink ~\.claude.json ----------
 $l = Get-Item "$env:USERPROFILE\.claude.json" -Force -ErrorAction SilentlyContinue
@@ -202,13 +238,14 @@ if ($l -and $l.LinkType -eq 'SymbolicLink') {
 # ---------- 6. record this hostname in the README ----------
 $hn = $env:COMPUTERNAME
 $date = Get-Date -Format yyyy-MM-dd
+$mode = if ($Client) { 'client' } else { 'always-on' }
 $txt = Get-Content $readmePath -Raw
 if ($txt -match "Pending:.*$hn") {
-    $txt = $txt -replace "Done on: ", "Done on: $hn ($date), "
+    $txt = $txt -replace "Done on: ", "Done on: $hn ($date, $mode), "
     $txt = $txt -replace "(Pending:[^\r\n]*?)(, )?$hn", '$1'
     $txt = $txt -replace "Pending: ,\s*", "Pending: "
     Set-Content -Path $readmePath -Value $txt -Encoding utf8
-    Write-Host "README updated: $hn marked done"
+    Write-Host "README updated: $hn marked done ($mode)"
 } else { Write-Host "README Done-on line already covers $hn (or hostname unlisted)" }
 
-Write-Host "SETUP COMPLETE on $hn"
+Write-Host "SETUP COMPLETE on $hn ($mode mode)"
