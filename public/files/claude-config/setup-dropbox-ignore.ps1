@@ -3,8 +3,9 @@
 #
 # Default (always-on machines): writes the maintenance script + README locally
 # (bypassing any sync backlog), registers the DropboxIgnoreMaintenance task
-# (6-hourly + at logon + start-when-available), runs the script once,
-# de-symlinks ~\.claude.json, and records this hostname in the README.
+# (S4U principal so it fires even at the lock/logon screen; 6-hourly + at logon
+# + start-when-available), runs the script once, de-symlinks ~\.claude.json,
+# and records this hostname in the README.
 #
 # -Client (SSH-only clients / laptops): same, but NO recurring task — the
 # one-time stamp + de-symlink is all a client needs; junk it uploads later is
@@ -186,7 +187,10 @@ Run the hosted bootstrap (works even before Dropbox sync catches up):
     powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\setup-dropbox-ignore.ps1" -Client
 
 Always-on machines get the DropboxIgnoreMaintenance task: 6-hourly, plus
-at-logon and start-when-available so missed windows catch up. -Client machines
+at-logon and start-when-available so missed windows catch up. The task runs
+under an S4U principal (run whether user is logged on or not, no stored
+password), so it keeps firing even when the machine sits at the lock/logon
+screen for days. -Client machines
 get NO recurring task — the one-time stamps + `~\.claude.json` de-symlink are
 all they need; junk they upload later is garbage-collected account-wide within
 ~6 h by an always-on machine's run (caveat: that GC can also delete a client's
@@ -212,16 +216,22 @@ if ($Client) {
         $daily.Repetition = (New-ScheduledTaskTrigger -Once -At 6am `
             -RepetitionInterval (New-TimeSpan -Hours 6) -RepetitionDuration (New-TimeSpan -Hours 24)).Repetition
         $logon = New-ScheduledTaskTrigger -AtLogOn
-        $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -DontStopIfGoingOnBatteries `
+        # S4U: run whether or not anyone is logged on (no stored password). Without
+        # this the default interactive principal silently skips every firing while
+        # the machine sits at the lock/logon screen — days on end on these hosts.
+        # S4U tokens are local-only (no network creds); the script is pure local NTFS.
+        $principal = New-ScheduledTaskPrincipal -UserId "$env:COMPUTERNAME\$env:USERNAME" -LogonType S4U -RunLevel Limited
+        $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -DontStopIfGoingOnBatteries -AllowStartIfOnBatteries `
             -ExecutionTimeLimit (New-TimeSpan -Hours 2)
         Register-ScheduledTask -TaskName 'DropboxIgnoreMaintenance' -Action $action `
-            -Trigger $daily,$logon -Settings $settings -ErrorAction Stop | Out-Null
-        Write-Host "scheduled task registered (6-hourly + at logon + start-when-available)"
+            -Trigger $daily,$logon -Principal $principal -Settings $settings -ErrorAction Stop | Out-Null
+        Write-Host "scheduled task registered (S4U: runs at lock/logon screen; 6-hourly + at logon + start-when-available)"
         $ok = $true
     } catch { Write-Host "Register-ScheduledTask failed ($($_.Exception.Message)); falling back to schtasks" }
     if (-not $ok) {
-        schtasks /create /f /tn "DropboxIgnoreMaintenance" /sc daily /st 06:00 /ri 360 /du 24:00 /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$cfg\dropbox-ignore-maintenance.ps1'"
-        schtasks /create /f /tn "DropboxIgnoreMaintenanceLogon" /sc onlogon /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$cfg\dropbox-ignore-maintenance.ps1'"
+        # /np /ru = the schtasks spelling of S4U (run whether logged on or not, no stored password)
+        schtasks /create /f /tn "DropboxIgnoreMaintenance" /sc daily /st 06:00 /ri 360 /du 24:00 /np /ru "$env:USERNAME" /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$cfg\dropbox-ignore-maintenance.ps1'"
+        schtasks /create /f /tn "DropboxIgnoreMaintenanceLogon" /sc onlogon /np /ru "$env:USERNAME" /tr "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$cfg\dropbox-ignore-maintenance.ps1'"
     }
 }
 
