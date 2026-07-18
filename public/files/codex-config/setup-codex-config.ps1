@@ -90,9 +90,10 @@ function Ensure-LocalCodexConfig {
 
 function Assert-LocalRuntimeState {
     $criticalNames = '.sandbox','.sandbox-bin','.sandbox-secrets','.tmp','tmp',
-        'cache','sessions','archived_sessions','sqlite','plugins','vendor_imports',
+        'cache','sqlite','plugins','vendor_imports',
         'claude','logs','log','scratch','process_manager','ambient-suggestions',
-        'memories','pets','auth.json','history.jsonl','session_index.jsonl',
+        'memories','pets','sessions','archived_sessions',
+        'auth.json','history.jsonl','session_index.jsonl',
         'models_cache.json','version.json','installation_id','cap_sid','sandbox.log',
         '.codex-global-state.json','.codex-global-state.json.bak'
     $criticalPaths = @($criticalNames | ForEach-Object { Join-Path $script:codexRoot $_ })
@@ -106,6 +107,24 @@ function Assert-LocalRuntimeState {
         }
     }
     Write-Host 'Codex runtime-state locality OK'
+}
+
+function Get-RunningCodexProcesses {
+    try {
+        return @(Get-CimInstance Win32_Process -ErrorAction Stop | Where-Object {
+            $_.Name -ieq 'codex.exe' -or
+            ($_.Name -ieq 'node.exe' -and $_.CommandLine -match '(?i)[\\/]@openai[\\/]codex[\\/]bin[\\/]codex\.js(?=["\s]|$)')
+        })
+    }
+    catch { throw "Could not enumerate Codex processes safely: $($_.Exception.Message)" }
+}
+
+function Assert-NoRunningCodex {
+    $running = Get-RunningCodexProcesses
+    if ($running.Count) {
+        $summary = @($running | ForEach-Object { "$($_.Name) PID=$($_.ProcessId)" }) -join ', '
+        throw "Close every Codex CLI, app, extension, app-server, and subagent before setup. Run this bootstrap from ordinary PowerShell or Claude Code. Running: $summary"
+    }
 }
 
 function Get-BackupPath([string]$sourcePath) {
@@ -260,7 +279,7 @@ function Assert-PortableAssets {
     })
     if ($ponytail.Count -ne 1) { throw 'Plugin manifest lacks the required Ponytail GitHub entry.' }
 
-    foreach ($scriptName in 'codex-config-maintenance.ps1','setup-codex-shared-links.ps1') {
+    foreach ($scriptName in 'codex-config-maintenance.ps1','setup-codex-shared-links.ps1','setup-codex-session-links.ps1','watch-codex-session-policy.ps1') {
         $scriptPath = Join-Path $script:codexConfig $scriptName
         $tokens = $null
         $parseErrors = $null
@@ -508,6 +527,7 @@ try {
         if ($codexRootItem.LinkType) { throw "The live .codex root must be machine-local, but it is a link: $($script:codexRoot)" }
     }
     else { $null = New-Item -ItemType Directory -Force -Path $script:codexRoot }
+    Assert-NoRunningCodex
     Ensure-LocalCodexConfig
     Assert-LocalRuntimeState
     $null = New-Item -ItemType Directory -Force -Path $script:codexConfig
@@ -524,7 +544,7 @@ try {
     foreach ($name in 'AGENTS.md','orchestrator.config.toml','codex-plugin-manifest.json','DROPBOX-IGNORE-README.md') {
         Ensure-Asset $name
     }
-    foreach ($name in 'codex-config-maintenance.ps1','setup-codex-shared-links.ps1') {
+    foreach ($name in 'codex-config-maintenance.ps1','setup-codex-shared-links.ps1','setup-codex-session-links.ps1','watch-codex-session-policy.ps1') {
         Ensure-Asset $name -Refresh
     }
     Assert-PortableAssets
@@ -532,6 +552,14 @@ try {
     Ensure-FileLink (Join-Path $script:codexRoot 'AGENTS.md') (Join-Path $script:codexConfig 'AGENTS.md')
     Ensure-FileLink (Join-Path $script:codexRoot 'orchestrator.config.toml') (Join-Path $script:codexConfig 'orchestrator.config.toml')
     Ensure-SkillsJunction (Join-Path $script:codexRoot 'skills') $claudeSkills
+
+    $sessionHelper = Join-Path $script:codexConfig 'setup-codex-session-links.ps1'
+    $sessionOutput = & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $sessionHelper -Import 2>&1
+    $sessionExit = $LASTEXITCODE
+    $sessionOutput | ForEach-Object { Write-Host $_ }
+    if ($sessionExit -ne 0 -or ($sessionOutput -join [Environment]::NewLine) -notmatch 'SESSION MIRROR SETUP COMPLETE local_roots_ok=2 mirror_roots_ok=2 policy=cli,vscode') {
+        throw 'Session-mirror helper did not verify both local roots and the selective mirror.'
+    }
 
     $profileProbe = & codex --profile orchestrator debug prompt-input 2>&1
     $profileProbeExit = $LASTEXITCODE
@@ -569,8 +597,8 @@ try {
     if ($maintenanceExit -ne 0) { throw "Maintenance script exited $maintenanceExit." }
     $summaryLines = @($maintenanceOutput | ForEach-Object { [string]$_ } | Where-Object { $_.Trim() })
     $summaryLine = if ($summaryLines.Count) { $summaryLines[-1].Trim() } else { '' }
-    if ($summaryLine -notmatch '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\s+stamped=\d+\s+junk_removed=\d+\s+links_ok=3$') {
-        throw "Maintenance verification did not report an exact links_ok=3 summary. Last line: $summaryLine"
+    if ($summaryLine -notmatch '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\s+stamped=\d+\s+unignored=\d+\s+junk_removed=\d+\s+uploaded=\d+\s+downloaded=\d+\s+excluded=\d+\s+deferred=\d+\s+conflicts=0\s+links_ok=3\s+local_roots_ok=2\s+mirror_roots_ok=2$') {
+        throw "Maintenance verification did not report the exact clean mirror summary. Last line: $summaryLine"
     }
 
     $claudeHashAfter = (Get-FileHash -Algorithm SHA256 -LiteralPath $claudeGlobal).Hash
@@ -580,7 +608,7 @@ try {
     Set-MaintenanceTask $maintenancePath
     Update-HostRecord (Join-Path $script:codexConfig 'DROPBOX-IGNORE-README.md')
     if ($Client) {
-        Write-Host "SETUP COMPLETE on $hostName (client mode; no scheduled task)"
+        Write-Host "SETUP COMPLETE on $hostName (client mode; no recurring maintenance task)"
     }
     else { Write-Host "SETUP COMPLETE on $hostName (always-on mode)" }
 }
