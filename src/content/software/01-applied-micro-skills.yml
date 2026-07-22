@@ -2,4 +2,22 @@ name: "applied-micro-skills"
 repo_url: "https://github.com/kennethkhoocy/applied-micro-skills"
 language: "Claude Code and Codex"
 sort_key: 1
-description: "A collection of eighteen skills for empirical applied-microeconomics research. It covers reproducibility auditing, defensible LLM-assisted classification, event studies, WRDS, Stata and pyfixest workflows, and publication-grade tables, figures, citations, and document delivery. Each skill is self-contained and can be installed for Claude Code or Codex."
+description: >-
+  A collection of eighteen Claude Code and Codex skills designed around the full empirical
+  applied-microeconomics workflow: acquiring data and literature, constructing defensible
+  variables, estimating models, producing publication-ready outputs, and independently
+  verifying the results. The flagship adversarial-empirical-review workflow re-runs an
+  article's analysis in an isolated copy, checks displayed table cells against machine-readable
+  computed values, tests determinism, and can rebuild the pipeline from raw inputs so stale
+  intermediates or hand-edited results cannot pass unnoticed. A five-skill LLM-methods cluster
+  addresses the less visible risks in large classification projects: mismatches between what
+  human annotators and models were allowed to see, validation targets that no prompt can satisfy,
+  provider-side model drift during multi-day campaigns, truncated evidence in adjudication
+  sheets, and hidden HTTP connection-pool limits in concurrent scoring. The econometrics and
+  infrastructure tools include a cumulative-abnormal-return engine validated against Stata's
+  eventstudy2, guarded access patterns for WRDS, a pystata bridge, and pyfixest guidance for GPU
+  demeaning and large regression grids. The remaining skills turn estimates into estout-style
+  LaTeX tables and Stata-look figures, place verified citations, retrieve PDFs from bot-gated
+  sources, and convert LaTeX or Markdown into journal- and co-author-ready Word and PDF files.
+  Each skill is self-contained, so researchers can install the complete collection or only the
+  pieces they need in either Claude Code or Codex.

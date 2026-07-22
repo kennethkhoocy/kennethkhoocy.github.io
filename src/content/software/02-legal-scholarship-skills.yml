@@ -2,4 +2,24 @@ name: "legal-scholarship-skills"
 repo_url: "https://github.com/kennethkhoocy/legal-scholarship-skills"
 language: "Claude Code and Codex"
 sort_key: 2
-description: "A collection of eight skills for legal scholarship. It covers verified citation placement and citation styles including Bluebook, OSCOLA, and McGill, as well as article planning and revision, source retrieval, literature reviews, and law-review-ready Word and PDF document workflows. Each skill can be installed for Claude Code or Codex."
+description: >-
+  A collection of eight Claude Code and Codex skills built for the distinctive production
+  pipeline of legal scholarship, where arguments live partly in footnotes, citation form is
+  governed by demanding style manuals, and manuscripts eventually pass through Word-centred
+  law-review editing. The flagship cite-placement workflow inserts references only from an
+  author-supplied, pre-screened bibliography, verifies them against bibliographic databases,
+  and can place or restyle citations in LaTeX and Word using Bluebook, OSCOLA, Chicago, APA, or
+  McGill conventions. It generates and maintains short forms such as Id., supra, ibid, and
+  OSCOLA cross-references while deliberately preserving case citations, legislation, and
+  discursive footnotes that should not be mechanically rewritten. The planning skill interviews
+  the author about the thesis, contribution, article type, and structure, then decomposes the
+  project into paragraph-sized argument moves with typed citation slots instead of invented
+  authorities. Source workflows discover and screen literature from a manuscript or proposal,
+  recover PDFs from bot-gated hosts, and extract law-review articles through a footnote-aware
+  path that keeps notes with the propositions they support. For editing and delivery, word-docx
+  reads redlined manuscripts, prepares responses to editor comments, and applies approved replies
+  as tracked changes; latex-to-word supports both round-trip editing and high-fidelity final
+  conversion with native tables, equations, and footnotes; and markdown-to-pdf produces polished
+  ancillary documents. Every skill can be installed independently for Claude Code or Codex, and
+  the repository also includes a standalone Windows citation-restyling app for colleagues who use
+  neither agent.
