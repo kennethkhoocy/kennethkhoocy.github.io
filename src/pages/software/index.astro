@@ -22,7 +22,14 @@ const sorted = projects.sort((a, b) => {
         <div class="mt-1 space-y-3">
           {p.data.description.trim().split(/\r?\n\s*\r?\n/).map((paragraph) => <p>{paragraph}</p>)}
         </div>
-        <p class="mt-1 text-sm"><a href={p.data.repo_url}>View repository on GitHub →</a></p>
+        {p.data.highlights.length > 0 && (
+          <ul class="mt-3 space-y-3 list-disc pl-5">
+            {p.data.highlights.map((highlight) => (
+              <li class="pl-1"><span class="font-medium">{highlight.title}</span> {highlight.description}</li>
+            ))}
+          </ul>
+        )}
+        <p class="mt-3 text-sm"><a href={p.data.repo_url}>View repository on GitHub →</a></p>
       </li>
     ))}
   </ul>
