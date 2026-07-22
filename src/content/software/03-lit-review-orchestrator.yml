@@ -1,0 +1,5 @@
+name: "lit-review-orchestrator"
+repo_url: "https://github.com/kennethkhoocy/lit-review-orchestrator"
+language: "Python · Claude Code and Codex"
+sort_key: 3
+description: "A document-driven literature-review pipeline that turns a manuscript, abstract, proposal, or research question into a deduplicated and relevance-ranked bibliography. It searches multiple scholarly channels, verifies every candidate against OpenAlex, Crossref, or Semantic Scholar, drops unconfirmed references, and exports the screened results to spreadsheet, RIS, and BibTeX formats. It supports agent-driven runs in Claude Code and Codex, with an autonomous API fallback."

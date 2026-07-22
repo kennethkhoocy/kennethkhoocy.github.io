@@ -1,0 +1,5 @@
+name: "applied-micro-skills"
+repo_url: "https://github.com/kennethkhoocy/applied-micro-skills"
+language: "Claude Code and Codex"
+sort_key: 1
+description: "A collection of eighteen skills for empirical applied-microeconomics research. It covers reproducibility auditing, defensible LLM-assisted classification, event studies, WRDS, Stata and pyfixest workflows, and publication-grade tables, figures, citations, and document delivery. Each skill is self-contained and can be installed for Claude Code or Codex."
