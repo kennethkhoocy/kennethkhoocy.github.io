@@ -51,6 +51,10 @@ const software = defineCollection({
     repo_url: z.string().url(),
     language: z.string().optional(),
     description: z.string(),
+    highlights: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+    })).default([]),
     sort_key: z.number().int().optional(),
   }),
 });
