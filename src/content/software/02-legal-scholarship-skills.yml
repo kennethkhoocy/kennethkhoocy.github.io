@@ -1,0 +1,5 @@
+name: "legal-scholarship-skills"
+repo_url: "https://github.com/kennethkhoocy/legal-scholarship-skills"
+language: "Claude Code and Codex"
+sort_key: 2
+description: "A collection of eight skills for legal scholarship. It covers verified citation placement and citation styles including Bluebook, OSCOLA, and McGill, as well as article planning and revision, source retrieval, literature reviews, and law-review-ready Word and PDF document workflows. Each skill can be installed for Claude Code or Codex."
