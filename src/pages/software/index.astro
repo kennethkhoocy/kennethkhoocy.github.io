@@ -19,7 +19,9 @@ const sorted = projects.sort((a, b) => {
       <li>
         <a href={p.data.repo_url} class="text-lg font-medium block font-mono">{p.data.name}</a>
         {p.data.language && <div class="text-sm" style="color: var(--color-text-muted);">{p.data.language}</div>}
-        <p class="mt-1">{p.data.description}</p>
+        <div class="mt-1 space-y-3">
+          {p.data.description.trim().split(/\r?\n\s*\r?\n/).map((paragraph) => <p>{paragraph}</p>)}
+        </div>
         <p class="mt-1 text-sm"><a href={p.data.repo_url}>View repository on GitHub →</a></p>
       </li>
     ))}

@@ -2,24 +2,15 @@ name: "legal-scholarship-skills"
 repo_url: "https://github.com/kennethkhoocy/legal-scholarship-skills"
 language: "Claude Code and Codex"
 sort_key: 2
-description: >-
-  A collection of eight Claude Code and Codex skills built for the distinctive production
-  pipeline of legal scholarship, where arguments live partly in footnotes, citation form is
-  governed by demanding style manuals, and manuscripts eventually pass through Word-centred
-  law-review editing. The flagship cite-placement workflow inserts references only from an
-  author-supplied, pre-screened bibliography, verifies them against bibliographic databases,
-  and can place or restyle citations in LaTeX and Word using Bluebook, OSCOLA, Chicago, APA, or
-  McGill conventions. It generates and maintains short forms such as Id., supra, ibid, and
-  OSCOLA cross-references while deliberately preserving case citations, legislation, and
-  discursive footnotes that should not be mechanically rewritten. The planning skill interviews
-  the author about the thesis, contribution, article type, and structure, then decomposes the
-  project into paragraph-sized argument moves with typed citation slots instead of invented
-  authorities. Source workflows discover and screen literature from a manuscript or proposal,
-  recover PDFs from bot-gated hosts, and extract law-review articles through a footnote-aware
-  path that keeps notes with the propositions they support. For editing and delivery, word-docx
-  reads redlined manuscripts, prepares responses to editor comments, and applies approved replies
-  as tracked changes; latex-to-word supports both round-trip editing and high-fidelity final
-  conversion with native tables, equations, and footnotes; and markdown-to-pdf produces polished
-  ancillary documents. Every skill can be installed independently for Claude Code or Codex, and
-  the repository also includes a standalone Windows citation-restyling app for colleagues who use
-  neither agent.
+description: |-
+  A collection of eight Claude Code and Codex skills for the distinctive production pipeline of legal scholarship. Legal articles pose a combination of problems that general writing tools rarely handle well: much of the argument is carried in footnotes, citation form is governed by demanding and jurisdiction-specific manuals, authorities must never be fabricated, and even authors who draft in LaTeX eventually have to exchange redlined Word files with editors and co-authors. The repository covers that pipeline from the first article plan through literature discovery, citation placement, editorial revision, and final document delivery. Each skill is self-contained, but together they form an end-to-end toolkit for producing and maintaining a law-review manuscript.
+
+  writing-article-plans handles the planning and drafting stage. It interviews the author to settle the thesis, contribution, article type, audience, and structure before prose generation begins. It then decomposes each section into paragraph-sized argumentative moves, identifies the function of each paragraph, and marks claims that require support with typed citation slots instead of supplying invented references. The resulting plan can drive a structured drafting process in LaTeX while preserving the author's control over the argument and making the source requirements visible before citations are inserted.
+
+  Three sourcing tools build the evidentiary base. lit-review-orchestrator starts from a manuscript, abstract, proposal, or research question and returns a deduplicated, relevance-ranked bibliography in which every retained record has been checked against a scholarly index. download-gated-pdfs retrieves the actual PDF binary from publisher, repository, or think-tank pages that serve bot checks and HTML interstitials to non-browser clients. pdf then extracts and analyzes the acquired documents, including a footnote-aware route for law-review articles that places each note near its reference point instead of appending a scrambled block of footnotes to the end. Together, these skills separate literature discovery, document retrieval, and substantive reading while preserving an auditable path back to the source.
+
+  cite-placement is the flagship citation workflow. It places only references supplied in an author's screened bibliography, verifies them against OpenAlex and Crossref, and inserts them into a new copy of a LaTeX or Word manuscript so the original remains untouched. It supports inline author-date citations as well as full footnote placement and can format or restyle journal articles, books, and working papers under Bluebook, OSCOLA, Chicago notes, APA, or McGill conventions. Short forms such as Id., supra note, ibid, and OSCOLA's cross-references are generated and can be repaired after manual editing. The restyling boundary is deliberately conservative: case citations, legislation, signals, and discursive footnotes are preserved rather than mechanically transformed, and a changelog records what the tool changed. The same pipeline is also available through a standalone Windows application for colleagues who use neither Claude Code nor Codex.
+
+  The manuscript-exchange tools address the reality of law-review editing. word-docx reads the redlined Word document returned by an editor, exposes comments and tracked changes for review, prepares response-to-comments documents, and can apply the author's approved replies as tracked edits rather than flattening the revision history. latex-to-word supports the round trip for authors who draft in LaTeX: convert an editor's Word file back into workable source, revise it, and return a Word document while checking that footnotes have not silently disappeared. For final delivery, its one-way fidelity engine creates native Word tables, equations, footnotes, figures, and resolved cross-references instead of embedding screenshots or leaving journal staff with a fragile conversion.
+
+  markdown-to-pdf completes the collection by turning research memos, cover letters, reports, and other Markdown materials into polished PDFs, with checks that images and linked assets are genuinely present in the output. Across the repository, the emphasis is on traceability and safe boundaries: citations come from screened inputs, bibliographic records are verified, originals are preserved, style transformations are logged, footnote counts are checked, and editor-facing changes remain reviewable. Researchers can install all eight skills as a unified legal-scholarship toolkit or copy only the individual workflow they need; each includes installation and invocation instructions for both Claude Code and Codex.

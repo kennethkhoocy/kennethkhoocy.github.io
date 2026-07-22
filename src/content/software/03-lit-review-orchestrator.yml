@@ -2,23 +2,4 @@ name: "lit-review-orchestrator"
 repo_url: "https://github.com/kennethkhoocy/lit-review-orchestrator"
 language: "Python · Claude Code and Codex"
 sort_key: 3
-description: >-
-  A document-driven literature-review pipeline built around the failure that makes generative
-  research tools dangerous: a model can return a perfectly plausible citation to a paper that
-  never existed. Starting from a LaTeX or Word manuscript, abstract, proposal, or a raw research
-  question, the orchestrator extracts the underlying research problem and creates
-  channel-specific search plans rather than relying on a single hand-written keyword query. It
-  searches several sources for breadth, including Undermind, Gemini Deep Research, Google Scholar,
-  keyless web and scholarly-index searches, with optional Scholar Labs, supplementary sources,
-  and citation chaining. The resulting records are normalized, enriched, merged, and
-  deduplicated before a verification stage checks every candidate against OpenAlex, Crossref, or
-  Semantic Scholar. A DOI must resolve to a record whose title also matches, preventing a
-  fabricated title from borrowing an unrelated but valid DOI; references that no index confirms
-  are dropped into a separate audit file, while outage guards prevent an unavailable index from
-  silently emptying a real bibliography. Papers that survive are screened and ranked against the
-  article's research question, then exported as an Excel workbook, RIS, and BibTeX. The default
-  agent-driven workflow uses an emit-and-ingest file seam so reasoning can run inside Claude Code
-  or Codex without an Anthropic API key, while an autonomous Sonnet and DeepSeek fallback supports
-  unattended command-line runs. An interactive settings dialog provides a front door for choosing
-  documents, outputs, search channels, verification, screening, and advanced options without
-  hiding the underlying pipeline or its audit trail.
+description: "A document-driven literature-review pipeline that turns a manuscript, abstract, or proposal into a deduplicated, relevance-ranked bibliography. It extracts a search plan from the document, runs several deep-research engines concurrently (Undermind, Gemini Deep Research, and Google Scholar), and fuses their results into a single list. Before any reference reaches the output, a verification stage confirms each candidate against OpenAlex, Crossref, or Semantic Scholar and drops anything none can confirm, removing the fabricated citations that language-model searches are prone to produce. Distributed as a Claude Code and Codex skill, it delivers the screened results as a relevance-ranked spreadsheet alongside RIS and BibTeX exports."
