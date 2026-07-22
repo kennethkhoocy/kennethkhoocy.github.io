@@ -2,4 +2,23 @@ name: "lit-review-orchestrator"
 repo_url: "https://github.com/kennethkhoocy/lit-review-orchestrator"
 language: "Python · Claude Code and Codex"
 sort_key: 3
-description: "A document-driven literature-review pipeline that turns a manuscript, abstract, proposal, or research question into a deduplicated and relevance-ranked bibliography. It searches multiple scholarly channels, verifies every candidate against OpenAlex, Crossref, or Semantic Scholar, drops unconfirmed references, and exports the screened results to spreadsheet, RIS, and BibTeX formats. It supports agent-driven runs in Claude Code and Codex, with an autonomous API fallback."
+description: >-
+  A document-driven literature-review pipeline built around the failure that makes generative
+  research tools dangerous: a model can return a perfectly plausible citation to a paper that
+  never existed. Starting from a LaTeX or Word manuscript, abstract, proposal, or a raw research
+  question, the orchestrator extracts the underlying research problem and creates
+  channel-specific search plans rather than relying on a single hand-written keyword query. It
+  searches several sources for breadth, including Undermind, Gemini Deep Research, Google Scholar,
+  keyless web and scholarly-index searches, with optional Scholar Labs, supplementary sources,
+  and citation chaining. The resulting records are normalized, enriched, merged, and
+  deduplicated before a verification stage checks every candidate against OpenAlex, Crossref, or
+  Semantic Scholar. A DOI must resolve to a record whose title also matches, preventing a
+  fabricated title from borrowing an unrelated but valid DOI; references that no index confirms
+  are dropped into a separate audit file, while outage guards prevent an unavailable index from
+  silently emptying a real bibliography. Papers that survive are screened and ranked against the
+  article's research question, then exported as an Excel workbook, RIS, and BibTeX. The default
+  agent-driven workflow uses an emit-and-ingest file seam so reasoning can run inside Claude Code
+  or Codex without an Anthropic API key, while an autonomous Sonnet and DeepSeek fallback supports
+  unattended command-line runs. An interactive settings dialog provides a front door for choosing
+  documents, outputs, search channels, verification, screening, and advanced options without
+  hiding the underlying pipeline or its audit trail.
