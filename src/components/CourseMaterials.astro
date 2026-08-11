@@ -14,6 +14,10 @@ type FileItem = { name: string; size: number; url: string; ext: string };
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const apiUrl = `https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`;
 const folderUrl = `https://github.com/${repo}/tree/${branch}/${path}`;
+// Serve downloads via GitHub Pages (purged on every deploy) rather than
+// raw.githubusercontent.com, whose CDN can lag pushes by up to ~30 min.
+const [owner, repoName] = repo.split('/');
+const pagesBase = `https://${owner}.github.io/${repoName}`;
 
 let files: FileItem[] = [];
 let error = false;
@@ -34,7 +38,7 @@ try {
     .map((e: any) => ({
       name: e.name,
       size: e.size as number,
-      url: e.download_url as string,
+      url: `${pagesBase}/${(e.path as string).split('/').map(encodeURIComponent).join('/')}`,
       ext: (e.name.split('.').pop() || '').toUpperCase(),
     }));
   // Sort: non-numbered files (syllabus) first, then by leading lecture number.

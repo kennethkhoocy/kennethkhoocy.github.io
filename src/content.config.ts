@@ -26,7 +26,7 @@ const teaching = defineCollection({
     semesters: z.array(z.string()).default([]),
     syllabus_url: z.string().url().optional(),
     materials_url: z.string().url().optional(),
-    materials_repo: z.string().default('kennethkhoocy/teaching'),
+    materials_repo: z.string().default('kennethkhoocy/teaching-materials'),
     materials_branch: z.string().default('main'),
     materials_path: z.string().optional(),
     description: z.string(),
