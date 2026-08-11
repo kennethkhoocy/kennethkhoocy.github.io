@@ -1,7 +1,6 @@
 ---
 title: "Advanced Corporate Finance"
 code: "LL4554V"
-semesters: ["AY 2024/25 Sem 2"]
 materials_path: "CorpFin"
 description: "Course introducing core finance concepts for law students, covering asset pricing, the Efficient Market Hypothesis, the Capital Asset Pricing Model, derivative pricing, capital structures, M&A, corporate governance, and securities regulation."
 ---

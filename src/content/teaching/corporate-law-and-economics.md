@@ -1,7 +1,6 @@
 ---
 title: "Corporate Law and Economics"
 code: "LL4489V"
-semesters: ["AY 2025/26 Sem 2"]
 materials_path: "CorpLnE"
 description: "Seminar on the economic considerations informing corporate laws and governance arrangements across key jurisdictions, covering shareholder-director relations, institutional investors, ESG, activist shareholders, and stakeholder capitalism."
 ---

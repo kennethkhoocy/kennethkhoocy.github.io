@@ -1,7 +1,6 @@
 ---
 title: "Company Law"
 code: "LL4030 / LL5030"
-semesters: ["AY 2024/25 Sem 1", "AY 2025/26 Sem 1"]
 materials_path: "CorpLaw"
 description: "Core company law course covering incorporation, corporate personality, directors' duties, shareholder rights, corporate finance, and corporate insolvency, taught at the National University of Singapore, Faculty of Law."
 ---
