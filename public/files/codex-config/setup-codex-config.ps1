@@ -307,7 +307,15 @@ function Normalize-GitHubRepository([string]$source) {
 function Get-MarketplaceInstallMetadata($marketplace) {
     $metadataPath = Join-Path ([string]$marketplace.root) '.codex-marketplace-install.json'
     if (-not (Test-Path -LiteralPath $metadataPath -PathType Leaf)) {
-        throw "Marketplace install metadata is missing: $metadataPath"
+        # codex >= 0.147 no longer writes the install-metadata file; derive the
+        # same fields from the marketplace's git clone (ground truth) instead.
+        $root = [string]$marketplace.root
+        $source = (& git -C $root remote get-url origin 2>$null | Select-Object -First 1)
+        $ref = (& git -C $root rev-parse --abbrev-ref HEAD 2>$null | Select-Object -First 1)
+        if (-not $source -or -not $ref) {
+            throw "Marketplace install metadata is missing: $metadataPath"
+        }
+        return [pscustomobject]@{ source = ([string]$source).Trim(); ref_name = ([string]$ref).Trim() }
     }
     return (Get-Content -LiteralPath $metadataPath -Raw -Encoding UTF8 | ConvertFrom-Json)
 }
@@ -366,7 +374,7 @@ function Set-PluginEnabledInConfig([string]$pluginId, [bool]$enabled) {
     try {
         [IO.File]::WriteAllText($temporaryConfig,$text,$utf8NoBom)
         if (Test-Path -LiteralPath $configPath -PathType Leaf) {
-            [IO.File]::Replace($temporaryConfig,$configPath,$null)
+            [IO.File]::Replace($temporaryConfig,$configPath,[NullString]::Value)
         }
         else { Move-Item -LiteralPath $temporaryConfig -Destination $configPath }
         $script:codexConfigTouched = $true
@@ -535,6 +543,11 @@ try {
     $codexCommand = Get-Command codex -ErrorAction SilentlyContinue
     if (-not $codexCommand) { throw 'Required CLI is missing from PATH: codex' }
     Write-Host "CLI OK: codex -> $($codexCommand.Source)"
+    $codexVersionText = [string](& codex --version 2>$null | Select-Object -First 1)
+    if ($codexVersionText -notmatch '(\d+\.\d+\.\d+)' -or [version]$Matches[1] -lt [version]'0.147.0') {
+        throw "codex CLI is too old ('$codexVersionText'); per-profile config files need >= 0.147.0. Run: npm install -g @openai/codex@latest"
+    }
+    Write-Host "CLI OK: codex version $($Matches[1])"
     foreach ($commandName in 'gh','firecrawl') {
         $command = Get-Command $commandName -ErrorAction SilentlyContinue
         if (-not $command) { throw "Required CLI is missing from PATH: $commandName" }
