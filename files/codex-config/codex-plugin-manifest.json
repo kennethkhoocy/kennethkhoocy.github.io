@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "plugins": [
+    {
+      "marketplace": "ponytail",
+      "source": "DietrichGebert/ponytail",
+      "ref": "main",
+      "plugin": "ponytail@ponytail",
+      "observed_version": "4.8.4",
+      "observed_on": "2026-07-18"
+    }
+  ]
+}
